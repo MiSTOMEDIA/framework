@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+<head>
+	<title>Pilot</title>
+	<link rel="stylesheet" href="normalize.css" />
+	<link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+	<header>
+		<h2 class="header">Pilot App Manager</h2>
+		<nav>
+			<ul>
+				<li class="item"><a class="active" href="#">Packages</a></li>
+				<li class="item"><a href="#">Routes<span class="notifications">1</span></a></li>
+				<li class="item"><a href="#">Settings</a></li>
+				<li class="item"><a href="#">Sign out</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<div class="content">
+		<div class="left">
+			<h2>Active packages</h2>
+			<table cellspacing="0" class="bordered">
+				<tr>
+					<th>Package name</th>
+					<th>Delete</th>
+					<th>Deactivate</th>
+				</tr>
+				<tr>
+					<td class="package">
+						<b>PromoCMS</b>
+						<span class="danger">Routes collide with <b>Package Name</b></span>
+					</td>
+					<td class="delete"><a href="#">Delete</a></td>
+					<td class="activate"><a href="#">Deactivate</a></td>
+				</tr>
+				<tr>
+					<td class="package"><b>CMS Pro</b></td>
+					<td class="delete"><a href="#">Delete</a></td>
+					<td class="activate"><a href="#">Deactivate</a></td>
+				</tr>
+				<tr>
+					<td class="package"><b>PromoCMS</b></td>
+					<td class="delete"><a href="#">Delete</a></td>
+					<td class="activate"><a href="#">Deactivate</a></td>
+				</tr>
+				<tr>
+					<td class="package"><b>PromoCMS</b></td>
+					<td class="delete"><a href="#">Delete</a></td>
+					<td class="activate"><a href="#">Deactivate</a></td>
+				</tr>
+				<tr>
+					<td class="package"><b>PromoCMS</b></td>
+					<td class="delete"><a href="#">Delete</a></td>
+					<td class="activate"><a href="#">Deactivate</a></td>
+				</tr>
+			</table>
+
+			<h2 class="mt15">Disabled packages</h2>
+			<table cellspacing="0" class="bordered">
+				<tr>
+					<th>Package name</th>
+					<th>Delete</th>
+					<th>Activate</th>
+				</tr>
+				<tr>
+					<td class="package"><b>PromoCMS</b></td>
+					<td class="delete"><a href="#">Delete</a></td>
+					<td class="activate"><a href="#">Activate</a></td>
+				</tr>
+				<tr>
+					<td class="package"><b>PromoCMS</b></td>
+					<td class="delete"><a href="#">Delete</a></td>
+					<td class="activate"><a href="#">Activate</a></td>
+				</tr>
+				<tr>
+					<td class="package"><b>PromoCMS</b></td>
+					<td class="delete"><a href="#">Delete</a></td>
+					<td class="activate"><a href="#">Activate</a></td>
+				</tr>
+			</table>
+		</div>
+
+		<div class="right">
+			<h1>Available Packages</h1>
+			<p>Here's the list of available packages for Pilot Framework.</p>
+
+			<table width="700px" cellspacing="0" class="bordered" id="packages_table">
+			<thead>
+				<tr>
+					<th>Package name</th>
+					<th>Dependencies</th>
+					<th>Install</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="package">
+						<b>PromoCMS</b>
+						<span class="danger">Routes collide with <b>Package Name</b></span>
+					</td>
+					<td class="delete">
+					<ul class="dependencies">
+						<li><b>Freaky PI</b> (v. 2.1)</li>
+						<li><b>Bouleward</b> (v. 0.8)</li>
+					</ul>
+					</td>
+					<td class="activate"><a href="#">Install</a></td>
+				</tr>
+				<tr>
+					<td class="package"><b>CMS Pro</b></td>
+					<td class="delete"><span class="none">No dependencies</span></td>
+					<td class="activate"><a href="#">Install</a></td>
+				</tr>
+				<tr>
+					<td class="package"><b>jQuery CMS</b></td>
+					<td class="delete"><span class="none">No dependencies</span></td>
+					<td class="activate"><a href="#">Install</a></td>
+				</tr>
+				<tr>
+					<td class="package"><b>BlueSpot</b></td>
+					<td class="delete"><span class="none">No dependencies</span></td>
+					<td class="activate"><a href="#">Install</a></td>
+				</tr>
+				<tr>
+					<td class="package"><b>GlassMonkey</b></td>
+					<td class="delete"><span class="none">No dependencies</span></td>
+					<td class="activate"><a href="#">Install</a></td>
+				</tr>
+			</tbody>
+			</table>
+		</div>
+	</div>
+
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+	<script src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+	<script>
+	(function ($)
+	{
+		var oTable = $ ('#packages_table').dataTable();
+
+		$("[name=s]").keyup (function(){
+			// When value of the input is not blank
+			if( $(this).val() != "")
+			{
+				// Show only matching TR, hide rest of them
+				$("#packages_table tbody>tr").hide();
+				$("#packages_table td:contains-ci('" + $(this).val() + "')").parent("tr").show();
+			}
+			else
+			{
+				// When there is no input or clean again, show everything back
+				$("#packages_table tbody>tr").show();
+			}
+		});
+
+		$.extend($.expr[":"], 
+		{
+		    "contains-ci": function(elem, i, match, array) 
+			{
+				return (elem.textContent || elem.innerText || $(elem).text() || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+			}
+		});
+	})(jQuery);
+	</script>
+</body>
+</html>

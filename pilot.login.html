@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+	<title>Sign in</title>
+	<link rel="stylesheet" href="normalize.css" />
+	<link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="login_page">
+	<div class="login">
+	<h1 class="login_header">Pilot App Manager</h1>
+	<form action="" method="post">
+		<input type="password" placeholder="Enter Password" />
+	</form>
+	</div>
+
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+	<script>
+	(function ($)
+	{
+		$ ('form').submit (function (e)
+		{
+			$ ('.login').html ('<div class="loading"><img src="loader.gif" /></div>');
+
+			e.preventDefault();
+			return false;
+		});
+	})(jQuery);
+	</script>
+</body>
+</html>
